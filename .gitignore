@@ -1,0 +1,8 @@
+# Ignore build directories
+build/
+sample_app/build/
+
+# Editor / OS files
+.vscode/
+.DS_Store
+*.swp
