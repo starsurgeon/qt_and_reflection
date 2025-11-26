@@ -4,8 +4,7 @@
   "workspaceFolder": "/workspace/sample_app",
   "containerEnv": {
     "CC": "/opt/clang-p2996/bin/clang",
-    "CXX": "/opt/clang-p2996/bin/clang++",
-    "PATH": "/opt/clang-p2996/bin:${PATH}"
+    "CXX": "/opt/clang-p2996/bin/clang++"
   },
   "extensions": [
     "ms-vscode.cpptools",
