@@ -1,6 +1,6 @@
 {
   "name": "clang-p2996 Qt Dev",
-  "image": "clang-p2996:latest",
+  "build": { "dockerfile": "Dockerfile" },
   "workspaceFolder": "/workspace/sample_app",
   "containerEnv": {
     "CC": "/opt/clang-p2996/bin/clang",
