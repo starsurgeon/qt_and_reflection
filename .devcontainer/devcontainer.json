@@ -1,7 +1,7 @@
 {
   "name": "clang-p2996 Qt Dev",
   "build": { "dockerfile": "Dockerfile" },
-  "workspaceFolder": "/workspace/sample_app",
+  "workspaceFolder": "/workspace",
   "workspaceMount": "type=bind,source=${localWorkspaceFolder},target=/workspace,consistency=cached",
   "containerEnv": {
     "CC": "/opt/clang-p2996/bin/clang",
