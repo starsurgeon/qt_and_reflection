@@ -1,5 +1,7 @@
 #include <QCoreApplication>
 #include <QDebug>
+#include <vector>
+#include <print>
 
 int main(int argc, char **argv)
 {
@@ -11,5 +13,6 @@ int main(int argc, char **argv)
     for (const auto &value : data) {
         qDebug() << "Value:" << value;
     }
+    std::println("Hello from print!");
     return 0;
 }
