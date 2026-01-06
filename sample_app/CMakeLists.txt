@@ -46,8 +46,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   # Prefer the bundled libc++ implementation and avoid picking up the
   # system libstdc++ headers which would conflict with libc++ headers.
   if(EXISTS "/opt/clang-p2996/include/c++/v1")
-    target_compile_options(simple_qt_app PRIVATE -stdlib=libc++ -nostdinc++)
-    target_include_directories(simple_qt_app PRIVATE /opt/clang-p2996/include/c++/v1)
+    target_compile_options(simple_qt_app PRIVATE -nostdinc++)
   endif()
 
   # Add linker flags for the bundled libc++ runtime (handle arch-specific path)
