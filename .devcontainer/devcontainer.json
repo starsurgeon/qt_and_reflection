@@ -1,7 +1,8 @@
 {
   "name": "clang-p2996 Qt Dev",
   //"version": "0.2.0",
-  "build": { "dockerfile": "Dockerfile" },
+  //"build": { "dockerfile": "Dockerfile" },
+  "image": "my-dev-image:latest",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
@@ -15,11 +16,14 @@
     "vscode": {
       "extensions": [
         "ms-vscode.cpptools",
-        "ms-vscode.cmake-tools"
+        "ms-vscode.cmake-tools",
+        "llvm-vs-code-extensions.vscode-clangd"
       ],
       "settings": {
         "C_Cpp.default.compilerPath": "/opt/clang-p2996/bin/clang",
         "cmake.generator": "Ninja",
+        "clangd.path": "/opt/clang-p2996/bin/clangd",
+        "clangd.checkUpdates": false,
         "cmake.configureSettings": {
           "CMAKE_C_COMPILER": "/opt/clang-p2996/bin/clang",
           "CMAKE_CXX_COMPILER": "/opt/clang-p2996/bin/clang++",

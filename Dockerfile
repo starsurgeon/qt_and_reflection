@@ -51,6 +51,21 @@ COPY --from=builder ${LLVM_INSTALL_PREFIX} ${LLVM_INSTALL_PREFIX}
 # Provide a convenient include path for tools that expect `/usr/include/qt6`
 RUN ln -s /usr/include/x86_64-linux-gnu/qt6 /usr/include/qt6 || true
 
+# Ensure the toolchain's runtime libraries are discoverable by the dynamic loader.
+# Handle installations that place runtimes under lib, lib64, or lib/x86_64-unknown-linux-gnu.
+RUN if [ -d "${LLVM_INSTALL_PREFIX}/lib" ] && [ -e "${LLVM_INSTALL_PREFIX}/lib/libc++.so.1" ]; then \
+      printf '%s\n' "${LLVM_INSTALL_PREFIX}/lib" > /etc/ld.so.conf.d/clang-p2996.conf; \
+    elif [ -d "${LLVM_INSTALL_PREFIX}/lib/x86_64-unknown-linux-gnu" ]; then \
+      printf '%s\n' "${LLVM_INSTALL_PREFIX}/lib/x86_64-unknown-linux-gnu" > /etc/ld.so.conf.d/clang-p2996.conf && \
+      ln -s "${LLVM_INSTALL_PREFIX}/lib/x86_64-unknown-linux-gnu" "${LLVM_INSTALL_PREFIX}/lib" || true; \
+    elif [ -d "${LLVM_INSTALL_PREFIX}/lib64" ]; then \
+      printf '%s\n' "${LLVM_INSTALL_PREFIX}/lib64" > /etc/ld.so.conf.d/clang-p2996.conf && \
+      ln -s "${LLVM_INSTALL_PREFIX}/lib64" "${LLVM_INSTALL_PREFIX}/lib" || true; \
+    else \
+      # fallback: add install prefix lib (may be empty) so ldconfig run doesn't fail
+      printf '%s\n' "${LLVM_INSTALL_PREFIX}/lib" > /etc/ld.so.conf.d/clang-p2996.conf; \
+    fi && ldconfig
+
 COPY --from=builder ${LLVM_INSTALL_PREFIX} ${LLVM_INSTALL_PREFIX}
 
 ENV PATH="${LLVM_INSTALL_PREFIX}/bin:${PATH}" \
