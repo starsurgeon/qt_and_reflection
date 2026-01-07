@@ -1,4 +1,11 @@
 cmake_minimum_required(VERSION 3.20)
+
+# If a cached make program points to a non-existent path (e.g. a stale Windows ninja.exe),
+# remove it so CMake can probe or pick a suitable generator/make program for this system.
+if(DEFINED CMAKE_MAKE_PROGRAM AND NOT EXISTS "${CMAKE_MAKE_PROGRAM}")
+  unset(CMAKE_MAKE_PROGRAM CACHE)
+endif()
+
 project(simple_qt_app LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 26)

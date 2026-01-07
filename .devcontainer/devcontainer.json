@@ -2,7 +2,8 @@
   "name": "clang-p2996 Qt Dev",
   //"version": "0.2.0",
   //"build": { "dockerfile": "Dockerfile" },
-  "image": "my-dev-image:latest",
+  "image": "clang-p2996:latest",
+  //"image": "my-dev-image:latest",
   "features": {
     "ghcr.io/devcontainers/features/git:1": {}
   },
